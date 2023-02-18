@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-const apiurl = "https://jsonplaceholder.typicode.com/todos"
+const apiurl = "https://jsonplaceholder.typicode.com/users"
 
 func main() {
 
@@ -38,15 +38,31 @@ func main() {
 
 	// fmt.Println(res.RawQuery)
 
-	fmt.Println(" Press 1 to Login")
+	fmt.Println(" Press 1 for get request and 2 for post")
+
 	var num int
 	fmt.Scan(&num)
-	if num == 1 {
+	if num == 2 {
 		perform_post_req()
+	} else if num == 1 {
+		perfromgetreq()
 	} else {
-		fmt.Println("Thanks for using")
+		fmt.Println("Thanks for Using")
 	}
 
+}
+func perfromgetreq() {
+	const myurl = apiurl
+
+	response, err := http.Get(myurl)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+
+	content, _ := ioutil.ReadAll(response.Body)
+
+	fmt.Println(string(content))
 }
 
 func perform_post_req() {
