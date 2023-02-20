@@ -29,6 +29,44 @@ func createJson() {
 	fmt.Printf("%s \n", string(organisedjsondata))
 }
 
+// decoding the json data
+
+func decodeJson() {
+	jsondatasample := []byte(`
+	{
+		"Name": "subham",
+		"Email": "subham@gmail.com",
+		"Password": "subham@1234"
+	}
+	`)
+
+	var user creds
+
+	isvalidJson := json.Valid(jsondatasample)
+	if isvalidJson {
+		fmt.Println("json is valid")
+		json.Unmarshal(jsondatasample, &user)
+
+		fmt.Printf("%#v\n", user)
+	} else {
+		fmt.Println("Json is not valid")
+	}
+
+	// json using map instead of structure
+
+	var myuser map[string]interface{}
+	json.Unmarshal(jsondatasample, &myuser)
+	fmt.Printf("%#v\n", myuser)
+
+	// printing data using loop
+
+	for key, value := range myuser {
+		fmt.Printf(" Key : %v and value is %v \n ", key, value)
+	}
+
+}
+
 func main() {
-	createJson()
+	// createJson()
+	decodeJson()
 }
