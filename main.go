@@ -38,7 +38,7 @@ func main() {
 
 	// fmt.Println(res.RawQuery)
 
-	fmt.Println(" Press 1 for get request and 2 for post")
+	fmt.Println(" Press 1 for get request and 2 for post , 3 for json")
 
 	var num int
 	fmt.Scan(&num)
@@ -66,7 +66,7 @@ func perfromgetreq() {
 }
 
 func perform_post_req() {
-	const myurl = "https://codersbook-server-app-production.up.railway.app/api/auth/login"
+	const myurl = "http://localhost:5000/api/auth/login"
 	requestbody := strings.NewReader(`
 		{
 			"email":"test1@gmail.com",
@@ -81,5 +81,7 @@ func perform_post_req() {
 	defer response.Body.Close()
 	content, _ := ioutil.ReadAll(response.Body)
 
+	// fmt.Printf("TYpe of %T \n", requestbody)
 	fmt.Println(string(content))
+	// fmt.Println()
 }
