@@ -36,7 +36,8 @@ func decodeJson() {
 	{
 		"Name": "subham",
 		"Email": "subham@gmail.com",
-		"Password": "subham@1234"
+		"Password": "subham@12345"
+
 	}
 	`)
 
